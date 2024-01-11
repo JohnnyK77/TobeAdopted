@@ -14,5 +14,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "TobeAdopted"
-include(":app")
- 
+include(":presentation")
+include(":data")
+include(":domain")
