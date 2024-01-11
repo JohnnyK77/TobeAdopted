@@ -20,4 +20,19 @@ object Dependencies {
     const val JUNIT = "junit:junit:${Versions.JUNIT}"
     const val ANDROID_TEST_JUNIT = "androidx.test.ext:junit:${Versions.ANDROID_TEST_JUNIT}"
     const val ANDROID_TEST_ESPRESSO = "androidx.test.espresso:espresso-core:${Versions.ANDROID_TEST_ESPRESSO}"
+
+    // DI
+    const val DAGGER_HILT = "com.google.dagger:hilt-android:${Versions.DAGGER_HILT}"
+    const val DAGGER_COMPILER = "com.google.dagger:hilt-compiler:${Versions.DAGGER_HILT}"
+    const val ANDROID_HILT_WORK = "androidx.hilt:hilt-work:${Versions.ANDROID_HILT}"
+    const val ANDROID_WORK_RUNTIME_KTX = "androidx.work:work-runtime-ktx:${Versions.ANDROID_WORK_RUNTIME_KTX}"
+    const val ANDROID_HILT_COMPILER = "androidx.hilt:hilt-compiler:${Versions.ANDROID_HILT}"
+    const val ANDROID_HILT_NAVIGATION_COMPOSE = "androidx.hilt:hilt-navigation-compose:${Versions.ANDROID_HILT}"
+
+    // Network
+    const val RETROFIT2 = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT2}"
+    const val RETROFIT2_CONVERTOR_GSON = "com.squareup.retrofit2:converter-gson:${Versions.RETROFIT2}"
+
+    // Logger
+    const val Logger = "com.orhanobut:logger:${Versions.Logger}"
 }
