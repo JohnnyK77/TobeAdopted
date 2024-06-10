@@ -16,7 +16,7 @@ object Versions {
     const val ANDROID_TEST_ESPRESSO = "3.5.1"
     // DI
     const val DAGGER_HILT = "2.50"
-    const val ANDROID_HILT = "1.1.0"
+    const val ANDROID_HILT = "1.1.0-alpha01"
     const val ANDROID_WORK_RUNTIME_KTX = "2.9.0"
     // Network
     const val RETROFIT2 = "2.9.0"
