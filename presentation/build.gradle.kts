@@ -1,6 +1,8 @@
 plugins {
     id(Plugins.ANDROID_APPLICATION)
     id(Plugins.KOTLIN_ANDROID)
+    id(Plugins.KOTLIN_KAPT)
+    id(Plugins.DAGGER_HILT)
 }
 
 android {
@@ -30,14 +32,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -66,6 +69,15 @@ dependencies {
     androidTestImplementation(Dependencies.ANDROID_COMPOSE_UI_TEST_JUNIT4)
     debugImplementation(Dependencies.ANDROID_COMPOSE_UI_TOOLING)
     debugImplementation(Dependencies.ANDROID_COMPOSE_UI_TEST_MANIFEST)
+    // DI
+    implementation(Dependencies.DAGGER_HILT)
+    kapt(Dependencies.DAGGER_COMPILER)
+    implementation(Dependencies.ANDROID_HILT_WORK)
+    kapt(Dependencies.ANDROID_HILT_COMPILER)
+    implementation(Dependencies.ANDROID_WORK_RUNTIME_KTX)
+    implementation(Dependencies.ANDROID_HILT_NAVIGATION_COMPOSE)
+    // Logger
+    implementation(Dependencies.Logger)
     // Test
     testImplementation(Dependencies.JUNIT)
     androidTestImplementation(Dependencies.ANDROID_TEST_JUNIT)

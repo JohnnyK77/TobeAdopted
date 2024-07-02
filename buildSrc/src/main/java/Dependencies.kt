@@ -5,6 +5,10 @@ object Dependencies {
     const val ANDROID_APPCOMPAT = "androidx.appcompat:appcompat:${Versions.ANDROID_APPCOMPAT}"
     const val ANDROID_MATERIAL = "com.google.android.material:material:${Versions.ANDROID_MATERIAL}"
 
+    // Coroutines
+    const val COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}"
+    const val COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES}"
+
     // Compose
     const val ANDROID_ACTIVITY_COMPOSE = "androidx.activity:activity-compose:${Versions.ANDROID_ACTIVITY_COMPOSE}"
     const val ANDROID_COMPOSE_BOM = "androidx.compose:compose-bom:${Versions.ANDROID_COMPOSE_BOM}"

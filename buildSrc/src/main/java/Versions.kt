@@ -10,6 +10,7 @@ object Versions {
     const val ANDROID_COMPOSE_BOM = "2023.08.00"
     const val ANDROID_APPCOMPAT = "1.6.1"
     const val ANDROID_MATERIAL = "1.11.0"
+    const val COROUTINES = "1.7.3"
     // Test
     const val JUNIT = "4.13.2"
     const val ANDROID_TEST_JUNIT = "1.1.5"

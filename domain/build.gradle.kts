@@ -1,9 +1,14 @@
 plugins {
-    id("java-library")
-    id("org.jetbrains.kotlin.jvm")
+    id(Plugins.JAVA_LIBRARY)
+    id(Plugins.KOTLIN_JVM)
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+    implementation (Dependencies.COROUTINES_CORE)
+    implementation (Dependencies.COROUTINES_ANDROID)
 }

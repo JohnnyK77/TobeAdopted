@@ -8,7 +8,6 @@ import retrofit2.http.Path
 
 interface ApiService {
     @GET("{key}/json/TbAdpWaitAnimalView/{startIdx}/{endIdx}")
-
     suspend fun getWaitAnimalList(
         @Path("key") key: String,
         @Path("startIdx") startIndex: Int,
