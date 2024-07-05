@@ -1,4 +1,4 @@
-package johnnyk77.android.tobeadopted
+package johnnyk77.android.tobeadopted.ui.views
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -29,7 +29,7 @@ class MainViewModel @Inject constructor(
 
     private fun fetchWaitAnimalList() {
         viewModelScope.launch {
-            waitAnimalListUseCase.invoke("49506270416d61783130306f626b6c66", 1, 10)
+            waitAnimalListUseCase.invoke("49506270416d61783130306f626b6c66", 1, 999)
                 .collect { list ->
                     _uiSate.update { it.copy(waitAnimalList = list) }
                 }

@@ -82,4 +82,6 @@ dependencies {
     testImplementation(Dependencies.JUNIT)
     androidTestImplementation(Dependencies.ANDROID_TEST_JUNIT)
     androidTestImplementation(Dependencies.ANDROID_TEST_ESPRESSO)
+    // Image Loader
+    implementation(Dependencies.Coil)
 }

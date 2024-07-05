@@ -39,4 +39,7 @@ object Dependencies {
 
     // Logger
     const val Logger = "com.orhanobut:logger:${Versions.Logger}"
+
+    // Image Loader
+    const val Coil = "io.coil-kt:coil-compose:${Versions.Coil}"
 }

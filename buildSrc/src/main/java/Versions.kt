@@ -23,4 +23,6 @@ object Versions {
     const val RETROFIT2 = "2.9.0"
     // Logger
     const val Logger = "2.2.0"
+    // Image Loader
+    const val Coil= "2.6.0"
 }
