@@ -192,7 +192,6 @@ class MainView {
                         Text(text = "${entity.age}")
                     }
                     Text(text = "${entity.entranceDate} 입소")
-                    Spacer(modifier = Modifier.height(5.dp))
                     Text(
                         text = "${
                             when (entity.adoptStatus) {
