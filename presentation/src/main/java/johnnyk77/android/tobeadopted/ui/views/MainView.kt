@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,7 +36,10 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import johnnyk77.android.tobeadopted.domain.entity.AdoptStatus
+import johnnyk77.android.tobeadopted.domain.entity.Gender
 import johnnyk77.android.tobeadopted.domain.entity.Species
+import johnnyk77.android.tobeadopted.domain.entity.TempProtectionStatus
 import johnnyk77.android.tobeadopted.domain.entity.WaitAnimalEntity
 import johnnyk77.android.tobeadopted.ui.theme.PurpleGrey80
 import johnnyk77.android.tobeadopted.ui.theme.TobeAdoptedTheme
@@ -73,7 +77,7 @@ class MainView {
                         .padding(5.dp)
                         .border(
                             width = 2.dp,
-                            color = if (uiState.isCatListType) Color.White else PurpleGrey80,
+                            color = if (uiState.isCatListType) Color.Transparent else PurpleGrey80,
                             shape = RoundedCornerShape(10.dp)
                         )
                         .clickable {
@@ -96,7 +100,7 @@ class MainView {
                         .padding(5.dp)
                         .border(
                             width = 2.dp,
-                            color = if (uiState.isCatListType) PurpleGrey80 else Color.White,
+                            color = if (uiState.isCatListType) PurpleGrey80 else Color.Transparent,
                             shape = RoundedCornerShape(10.dp)
                         )
                         .clickable {
@@ -149,9 +153,51 @@ class MainView {
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column {
-                    Text(text = "${entity.name}", fontWeight = FontWeight.Bold)
-                    Text(text = "Age: ${entity.age}")
-                    Text(text = "Breed: ${entity.breeds}")
+                    Row {
+                        Text(
+                            style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
+                            text = "${entity.name}",
+                        )
+                        Spacer(modifier = Modifier.width(7.dp))
+                        if (entity.sexDistinguish == "W") {
+                            Text(
+                                style = TextStyle(color = Color.Red),
+                                text = Gender.Woman.emoji
+                            )
+                        } else {
+                            Text(
+                                style = TextStyle(color = Color.Blue),
+                                text = Gender.Man.emoji
+                            )
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(5.dp))
+                    Row {
+                        Text(
+                            text = "${entity.breeds}",
+                            fontWeight = FontWeight.Bold,
+                            fontStyle = FontStyle.Italic
+                        )
+                        Spacer(modifier = Modifier.width(5.dp))
+                        Text(text = "${entity.age}")
+                    }
+                    Text(text = "${entity.entranceDate} 등록")
+                    Text(
+                        text = "${
+                            when (entity.adoptStatus) {
+                                AdoptStatus.Waiting.code -> AdoptStatus.Waiting.msg
+                                AdoptStatus.Ongoing.code -> AdoptStatus.Ongoing.msg
+                                AdoptStatus.Complete.code -> AdoptStatus.Complete.msg
+                                else -> ""
+                            }
+                        }, ${
+                            when (entity.tempProtectStatus) {
+                                TempProtectionStatus.Center.code -> TempProtectionStatus.Center.msg
+                                TempProtectionStatus.Common.code -> TempProtectionStatus.Common.msg
+                                else -> ""
+                            }
+                        }"
+                    )
                 }
             }
         }
