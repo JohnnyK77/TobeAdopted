@@ -54,7 +54,7 @@ class DetailView {
                 ),
                 text = "${entity.name}",
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(15.dp))
             YoutubeScreen(
                 videoId = extractYouTubeId(entity.introductionUrl ?: "")
             )
@@ -95,15 +95,25 @@ class DetailView {
                         fontSize = 17.sp,
                     )
                 )
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(
+                    text = "${entity.bodyWeight}kg",
+                    style = TextStyle(
+                        fontSize = 17.sp,
+                    )
+                )
             }
+            Spacer(modifier = Modifier.height(10.dp))
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = "${entity.entranceDate} 등록",
+                text = "${entity.entranceDate} 입소",
                 style = TextStyle(
                     textAlign = TextAlign.Right,
                     fontSize = 15.sp
                 ),
             )
+            Spacer(modifier = Modifier.height(20.dp))
+            Divider(Modifier.height(1.dp))
             Spacer(modifier = Modifier.height(20.dp))
             HtmlText(text = entity.introductionContent ?: "")
             Divider(Modifier.height(1.dp))
