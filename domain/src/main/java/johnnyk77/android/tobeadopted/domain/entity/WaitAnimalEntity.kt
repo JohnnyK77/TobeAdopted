@@ -1,5 +1,7 @@
 package johnnyk77.android.tobeadopted.domain.entity
 
+import java.io.Serializable
+
 data class WaitAnimalEntity(
     val animalNo: Int,
     val name: String?,
@@ -14,7 +16,7 @@ data class WaitAnimalEntity(
     val tempProtectContent: String?,
     val introductionUrl: String?,
     val introductionContent: String?,
-)
+) : Serializable
 
 enum class Gender(val emoji: String) {
     Man("♂"), Woman("♀")

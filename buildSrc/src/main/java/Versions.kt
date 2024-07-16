@@ -25,4 +25,6 @@ object Versions {
     const val Logger = "2.2.0"
     // Image Loader
     const val Coil= "2.6.0"
+    // Youtube Player
+    const val YOUTUBE_PLAYER = "11.1.0"
 }

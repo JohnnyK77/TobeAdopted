@@ -84,4 +84,6 @@ dependencies {
     androidTestImplementation(Dependencies.ANDROID_TEST_ESPRESSO)
     // Image Loader
     implementation(Dependencies.Coil)
+    // Youtube player
+    implementation(Dependencies.YOUTUBE_PLAYER)
 }

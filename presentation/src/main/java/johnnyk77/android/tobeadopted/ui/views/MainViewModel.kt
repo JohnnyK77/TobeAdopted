@@ -6,8 +6,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import johnnyk77.android.tobeadopted.domain.entity.Species
 import johnnyk77.android.tobeadopted.domain.entity.WaitAnimalEntity
 import johnnyk77.android.tobeadopted.domain.usecase.WaitAnimalListUseCase
+import johnnyk77.android.tobeadopted.ui.navigation.Screen
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -19,11 +23,16 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
     data class MainUiState(
         val waitAnimalList: List<WaitAnimalEntity>? = null,
-        val isCatListType: Boolean = false
+        val isCatListType: Boolean = false,
+        val selectedEntity: WaitAnimalEntity? = null,
     )
 
     private val _uiSate = MutableStateFlow(MainUiState())
     val uiState: StateFlow<MainUiState> = _uiSate.asStateFlow()
+
+    private val _navigate = MutableSharedFlow<String>()
+    val navigate: SharedFlow<String> = _navigate.asSharedFlow()
+
     private var totalWaitAnimalList: List<WaitAnimalEntity>? = null
 
     init {
@@ -57,6 +66,13 @@ class MainViewModel @Inject constructor(
                     else
                         list.species == Species.Dog.code
                 })
+        }
+    }
+
+    fun onListItemClick(entity: WaitAnimalEntity) {
+        _uiSate.update { it.copy(selectedEntity = entity) }
+        viewModelScope.launch {
+            _navigate.emit(Screen.Detail.name)
         }
     }
 }

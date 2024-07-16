@@ -42,4 +42,7 @@ object Dependencies {
 
     // Image Loader
     const val Coil = "io.coil-kt:coil-compose:${Versions.Coil}"
+
+    // Youtube Player
+    const val YOUTUBE_PLAYER = "com.pierfrancescosoffritti.androidyoutubeplayer:core:${Versions.YOUTUBE_PLAYER}"
 }

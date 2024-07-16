@@ -25,7 +25,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -41,6 +40,7 @@ import johnnyk77.android.tobeadopted.domain.entity.Gender
 import johnnyk77.android.tobeadopted.domain.entity.Species
 import johnnyk77.android.tobeadopted.domain.entity.TempProtectionStatus
 import johnnyk77.android.tobeadopted.domain.entity.WaitAnimalEntity
+import johnnyk77.android.tobeadopted.ui.navigation.NavigationUtil
 import johnnyk77.android.tobeadopted.ui.theme.PurpleGrey80
 import johnnyk77.android.tobeadopted.ui.theme.TobeAdoptedTheme
 import johnnyk77.android.tobeadopted.util.extractYouTubeThumbnail
@@ -50,16 +50,17 @@ class MainView {
     fun MainScreen(
         viewModel: MainViewModel = hiltViewModel(), navController: NavHostController
     ) {
-        val context = LocalContext.current
         val uiState by viewModel.uiState.collectAsState()
         MainContent(
             uiState = uiState,
-            onSpeciesMenuClick = { isCatListType -> viewModel.setListType(isCatListType) }
+            onSpeciesMenuClick = { isCatListType -> viewModel.setListType(isCatListType) },
+            onListItemClick = viewModel::onListItemClick
         )
         LaunchedEffect(Unit) {
-            /*viewModel.navigate.collect {
+            viewModel.navigate.collect {
+                NavigationUtil.setCurrentAnimal(navController, uiState.selectedEntity)
                 navController.navigate(it)
-            }*/
+            }
         }
     }
 
@@ -67,6 +68,7 @@ class MainView {
     private fun MainContent(
         uiState: MainViewModel.MainUiState,
         onSpeciesMenuClick: (Boolean) -> Unit,
+        onListItemClick: (WaitAnimalEntity) -> Unit
     ) {
         Column {
             Spacer(modifier = Modifier.height(10.dp))
@@ -125,7 +127,8 @@ class MainView {
                 val waitAnimalList = uiState.waitAnimalList
                 if (!waitAnimalList.isNullOrEmpty()) {
                     items(waitAnimalList.size) {
-                        WaitAnimalItem(entity = waitAnimalList[it])
+                        val entity = waitAnimalList[it]
+                        WaitAnimalItem(entity = entity, onItemClick = { onListItemClick(entity) })
                     }
                 }
             }
@@ -133,12 +136,13 @@ class MainView {
     }
 
     @Composable
-    private fun WaitAnimalItem(entity: WaitAnimalEntity) {
+    private fun WaitAnimalItem(entity: WaitAnimalEntity, onItemClick: () -> Unit) {
         Card(
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(8.dp)
+                .clickable(onClick = onItemClick)
         ) {
             Row(
                 modifier = Modifier.padding(16.dp)
@@ -161,12 +165,18 @@ class MainView {
                         Spacer(modifier = Modifier.width(7.dp))
                         if (entity.sexDistinguish == "W") {
                             Text(
-                                style = TextStyle(color = Color.Red),
+                                style = TextStyle(
+                                    color = Color.Red,
+                                    fontWeight = FontWeight.Bold
+                                ),
                                 text = Gender.Woman.emoji
                             )
                         } else {
                             Text(
-                                style = TextStyle(color = Color.Blue),
+                                style = TextStyle(
+                                    color = Color.Blue,
+                                    fontWeight = FontWeight.Bold
+                                ),
                                 text = Gender.Man.emoji
                             )
                         }
@@ -210,7 +220,8 @@ class MainView {
             MainContent(
                 uiState = MainViewModel.MainUiState(
                 ),
-                onSpeciesMenuClick = {}
+                onSpeciesMenuClick = {},
+                onListItemClick = {}
             )
         }
     }

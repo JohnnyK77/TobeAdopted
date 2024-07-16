@@ -1,8 +1,6 @@
 package johnnyk77.android.tobeadopted.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -18,16 +16,9 @@ class ScreenNavigation {
             ) {
                 MainView().MainScreen(navController = controller)
             }
-            composable(
-                route = Screen.Detail.name
-            ) { backStackEntry ->
-                // MainViewModel 공유
-                val parentEntry = remember(backStackEntry) {
-                    controller.getBackStackEntry(Screen.Main.name)
-                }
+            composable(route = Screen.Detail.name) {
                 DetailView().DetailScreen(
-                    viewModel = hiltViewModel(parentEntry),
-                    navController = controller
+                    NavigationUtil.getPreviousAnimal(controller)
                 )
             }
         }
