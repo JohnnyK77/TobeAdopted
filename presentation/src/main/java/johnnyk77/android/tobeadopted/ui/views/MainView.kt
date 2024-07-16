@@ -43,6 +43,7 @@ import johnnyk77.android.tobeadopted.domain.entity.WaitAnimalEntity
 import johnnyk77.android.tobeadopted.ui.navigation.NavigationUtil
 import johnnyk77.android.tobeadopted.ui.theme.PurpleGrey80
 import johnnyk77.android.tobeadopted.ui.theme.TobeAdoptedTheme
+import johnnyk77.android.tobeadopted.util.BackOnPressed
 import johnnyk77.android.tobeadopted.util.CircleProgressDialog
 import johnnyk77.android.tobeadopted.util.extractYouTubeThumbnail
 
@@ -63,6 +64,7 @@ class MainView {
                 navController.navigate(it)
             }
         }
+        BackOnPressed()
     }
 
     @Composable
