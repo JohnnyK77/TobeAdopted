@@ -25,6 +25,7 @@ class MainViewModel @Inject constructor(
         val waitAnimalList: List<WaitAnimalEntity>? = null,
         val isCatListType: Boolean = false,
         val selectedEntity: WaitAnimalEntity? = null,
+        val isLoading: Boolean = false
     )
 
     private val _uiSate = MutableStateFlow(MainUiState())
@@ -41,8 +42,10 @@ class MainViewModel @Inject constructor(
 
     private fun fetchWaitAnimalList() {
         viewModelScope.launch {
+            setLoading(true)
             waitAnimalListUseCase.invoke("49506270416d61783130306f626b6c66", 1, 999)
                 .collect { list ->
+                    setLoading(false)
                     totalWaitAnimalList = list
                     setWaitAnimalList()
                 }
@@ -67,6 +70,10 @@ class MainViewModel @Inject constructor(
                         list.species == Species.Dog.code
                 })
         }
+    }
+
+    private fun setLoading(isLoading: Boolean) {
+        _uiSate.update { it.copy(isLoading = isLoading) }
     }
 
     fun onListItemClick(entity: WaitAnimalEntity) {
