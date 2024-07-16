@@ -95,10 +95,17 @@ class DetailView {
                         fontSize = 17.sp,
                     )
                 )
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(
+                    text = "${entity.bodyWeight}kg",
+                    style = TextStyle(
+                        fontSize = 17.sp,
+                    )
+                )
             }
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = "${entity.entranceDate} 등록",
+                text = "${entity.entranceDate} 입소",
                 style = TextStyle(
                     textAlign = TextAlign.Right,
                     fontSize = 15.sp
