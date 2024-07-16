@@ -15,3 +15,7 @@ data class WaitAnimalEntity(
     val introductionUrl: String?,
     val introductionContent: String?,
 )
+
+enum class Species(val code: String, val emoji: String) {
+    Dog("DOG", "\uD83D\uDC36"), Cat("CAT", "\uD83D\uDC31")
+}
