@@ -27,4 +27,6 @@ object Versions {
     const val Coil= "2.6.0"
     // Youtube Player
     const val YOUTUBE_PLAYER = "11.1.0"
+    // Splash
+    const val SPLASH = "1.0.1"
 }

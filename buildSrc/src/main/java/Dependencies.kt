@@ -45,4 +45,7 @@ object Dependencies {
 
     // Youtube Player
     const val YOUTUBE_PLAYER = "com.pierfrancescosoffritti.androidyoutubeplayer:core:${Versions.YOUTUBE_PLAYER}"
+
+    // Splash
+    const val SPLASH = "androidx.core:core-splashscreen:${Versions.SPLASH}"
 }

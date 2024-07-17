@@ -86,4 +86,6 @@ dependencies {
     implementation(Dependencies.Coil)
     // Youtube player
     implementation(Dependencies.YOUTUBE_PLAYER)
+    // Splash
+    implementation (Dependencies.SPLASH)
 }
